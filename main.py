@@ -3,6 +3,8 @@
 import requests
 import json
 
+import func_triangular_arb
+
 """ Retrive Graph QL mid prices for uniswap """
 
 def retrieve_uniswap_information():
@@ -27,5 +29,6 @@ def retrieve_uniswap_information():
     return json_dict
 
 if __name__ == "__main__":
-    mid_prices = retrieve_uniswap_information()
-    print(mid_prices["data"]["pools"][0:3])
+    pairs = retrieve_uniswap_information()["data"]["pools"]
+    structured_pairs = func_triangular_arb.structure_trading_pairs(pairs)
+    #print(pairs[0:3])
